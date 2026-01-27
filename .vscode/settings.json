@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:01 - Projeto SQL}/data/processed/sus.db",
+            "name": "Projeto_Internacoes",
+            "group": "Estudos"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

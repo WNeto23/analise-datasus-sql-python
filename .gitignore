@@ -1,0 +1,9 @@
+# Ignorar banco de dados local
+*.db
+
+# Ignorar pastas de ambiente virtual
+__pycache__/
+.venv/
+
+# Ignorar arquivos de dados brutos muito grandes
+data/raw/*.csv
