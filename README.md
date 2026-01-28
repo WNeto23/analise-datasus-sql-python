@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📊 Análise de Internações Hospitalares no Brasil (2019–2025)
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
@@ -80,3 +81,7 @@ Mermaid.js – Documentação visual da arquitetura de dados.
 Waltuiro Antonio dos Santos Neto Analista de Dados | Ciência de Dados
 
 Projeto desenvolvido para fins educacionais e demonstração de competências técnicas em Data Analytics.
+=======
+# analise-datasus-sql-python
+Projeto de ETL e análise de dados hospitalares do DATASUS (2019-2025) utilizando Python e SQLite
+>>>>>>> 426a575308d0e8298f0bd05a9a454bea498d5943
