@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # 1. Conexão com o banco
-conn = sqlite3.connect('../../data/processed/sus.db')
+conn = sqlite3.connect('../data/processed/sus.db')
 
 # --- GRÁFICO 1: Evolução das Internações (Linha) ---
 query_linha = """

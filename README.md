@@ -2,43 +2,72 @@
 # 📊 Análise de Internações Hospitalares no Brasil (2019–2025)
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![License](https://img.shields.io/github/license/SEU_USUARIO/NOME_REPOSITORIO)
-![Last Commit](https://img.shields.io/github/last-commit/SEU_USUARIO/NOME_REPOSITORIO)
-![Top Language](https://img.shields.io/github/languages/top/SEU_USUARIO/NOME_REPOSITORIO)
-![Repo Size](https://img.shields.io/github/repo-size/SEU_USUARIO/NOME_REPOSITORIO)
-
-## 📌 Visão Geral
-Este projeto realiza o processamento e análise de dados públicos de saúde, integrando as bases do **DATASUS (SIH/SUS)** e do **IBGE**. O foco é transformar dados brutos em inteligência sobre o comportamento das internações hospitalares no Brasil entre 2019 e 2025.
-
-**Objetivos Estratégicos:**
-* **Engenharia de Dados:** Extração e normalização de dados governamentais.
-* **Modelagem Analítica:** Estruturação de dados para facilitar consultas complexas.
-* **Insights de Gestão:** Mapear custos, sazonalidade e eficiência hospitalar.
+![License](https://img.shields.io/github/license/WNeto23/analise-datasus-sql-python)
+![Last Commit](https://img.shields.io/github/last-commit/WNeto23/analise-datasus-sql-python)
+![Top Language](https://img.shields.io/github/languages/top/WNeto23/analise-datasus-sql-python)
+![Repo Size](https://img.shields.io/github/repo-size/WNeto23/analise-datasus-sql-python)
+![Python](https://img.shields.io/badge/Python-ETL-blue)
+![SQL](https://img.shields.io/badge/SQL-Analytics-orange)
+![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey)
 
 ---
 
-## 🏗️ Arquitetura e Modelagem
+## 📌 Visão Geral
 
-### 🔄 Pipeline ETL (Python)
-Os dados originais do TabNet (formato `.csv` ou `.dbf`) apresentam estrutura *wide* (larga). O pipeline desenvolvido em **Python/Pandas** realiza:
-1.  **Limpeza:** Remoção de ruídos, rodapés e tratamento de valores ausentes.
-2.  **Transformação:** Conversão de formato *Wide* para *Long* (Melt) para análise temporal.
-3.  **Normalização:** Padronização de datas e chaves geográficas (Código IBGE).
-4.  **Carga:** Ingestão automatizada em banco de dados **SQLite/PostgreSQL**.
+Este projeto realiza o processamento, modelagem e análise de **dados públicos de saúde** no Brasil, integrando informações do **DATASUS (SIH/SUS)** e do **IBGE**.
 
-### 🧱 Modelo de Dados (Star Schema)
-Utilizamos o padrão de modelagem dimensional para otimizar a performance das consultas SQL.
+O foco é transformar dados brutos governamentais em **insights analíticos**, permitindo compreender o comportamento das internações hospitalares entre **2019 e 2025**, com ênfase em volume, custos, permanência hospitalar e sazonalidade.
+
+---
+
+## 🎯 Objetivos do Projeto
+
+- 🔧 **Engenharia de Dados:** ETL completo de dados governamentais
+- 🧱 **Modelagem Analítica:** Estruturação em modelo dimensional (Star Schema)
+- 📊 **Análise Exploratória:** Custos, volume, eficiência hospitalar e padrões temporais
+- 💼 **Portfólio Profissional:** Demonstração prática de Python, SQL e Analytics
+
+---
+
+## 🏗️ Arquitetura e Pipeline ETL
+
+### 🔄 Pipeline de Dados (Python + Pandas)
+
+Os dados do TabNet/DATASUS possuem estrutura **wide (larga)**, com colunas por mês/ano.  
+Foi desenvolvido um pipeline de **ETL em Python** para:
+
+1. **Extração**
+   - Importação de arquivos `.csv` do DATASUS (SIH/SUS)
+   - Integração com códigos geográficos oficiais do IBGE
+
+2. **Transformação**
+   - Limpeza de rodapés e colunas inválidas
+   - Conversão de formato *Wide → Long* (`melt`)
+   - Padronização de datas (ano/mês)
+   - Normalização de códigos IBGE
+
+3. **Carga**
+   - Persistência em banco de dados **SQLite**
+   - Estrutura otimizada para consultas analíticas em SQL
+
+---
+
+## 🧱 Modelo de Dados – Star Schema
+
+O projeto utiliza **modelagem dimensional**, ideal para análises analíticas e BI.
 
 ```mermaid
 erDiagram
-    dim_municipio ||--o{ fato_internacoes : "possui"
-    dim_municipio {
+    DIM_MUNICIPIO ||--o{ FATO_INTERNACOES : possui
+
+    DIM_MUNICIPIO {
         int cod_ibge PK
         string municipio
         string uf_sigla
         string nome_uf
     }
-    fato_internacoes {
+
+    FATO_INTERNACOES {
         int cod_municipio_ibge FK
         int ano
         int mes
@@ -46,41 +75,65 @@ erDiagram
         float valor_total
         float valor_medio_internacao
         float media_permanencia
+        int dias_permanencia
     }
+## 🔍 Principais Análises e Insights
 
-🔍 Principais Insights
-📈 Recuperação Pós-Pandemia
-Após a queda em 2020 (foco em COVID-19 e suspensão de eletivas), o ano de 2024 registrou o maior pico de internações gerais da série histórica.
+### 📈 Evolução das Internações
+- Queda significativa em **2020**, associada à pandemia e suspensão de procedimentos eletivos
+- Recuperação progressiva a partir de **2021**
+- **2024** apresenta o maior volume de internações da série histórica
 
-💰 Concentração de Custos
-Capitais e polos regionais detêm o maior ticket médio de internação, refletindo a concentração de leitos de alta complexidade.
+### 💰 Concentração de Custos
+- Capitais e polos regionais concentram o maior custo total
+- Estados do **Sul e Sudeste** apresentam maior *ticket médio* por internação
 
-📆 Padrão Sazonal
-Identificou-se uma redução sistemática de volume em fevereiro e dezembro, com alta estabilidade no segundo semestre.
+### 📆 Sazonalidade
+- Menor volume de internações em **fevereiro** e **dezembro**
+- Estabilidade e leve alta no **segundo semestre**
 
-🏥 Eficiência Hospitalar
-Análise das UFs onde a permanência hospitalar prolongada impacta diretamente a elevação do custo médio por paciente.
+### 🏥 Eficiência Hospitalar
+- Municípios com maior média de permanência tendem a apresentar
+  maior custo médio por internação
+- Identificação de **outliers** com permanências extremamente elevadas
 
-🛠️ Tecnologias Utilizadas
-Python (Pandas) – Engine de ETL e tratamento de dados.
+---
 
-SQL – Consultas analíticas, agregações e Window Functions.
+## 🛠️ Tecnologias Utilizadas
 
-SQLite / PostgreSQL – Armazenamento e gerenciamento de banco de dados.
+- **Python (Pandas)** – ETL, limpeza e transformação de dados
+- **SQL** – Consultas analíticas, agregações e métricas
+- **SQLite** – Armazenamento e gerenciamento dos dados
+- **Mermaid.js** – Documentação visual do modelo de dados
+- **Git & GitHub** – Versionamento e portfólio profissional
 
-Mermaid.js – Documentação visual da arquitetura de dados.
+---
 
-📎 Próximos Passos
-[ ] Implementar dashboard interativo (Streamlit ou Power BI).
+## 📎 Próximos Passos
 
-[ ] Adicionar segmentação por tipo de atendimento (Eletivo vs. Urgência).
+- [ ] Criar dashboard interativo (**Streamlit ou Power BI**)
+- [ ] Segmentar análises por tipo de atendimento (**Urgência x Eletivo**)
+- [ ] Automatizar atualização mensal dos dados
+- [ ] Migrar ambiente analítico para **PostgreSQL**
 
-[ ] Criar scripts de automação para atualização mensal dos dados.
+---
 
-👤 Autor
-Waltuiro Antonio dos Santos Neto Analista de Dados | Ciência de Dados
+## 📚 Fontes de Dados Oficiais
 
-Projeto desenvolvido para fins educacionais e demonstração de competências técnicas em Data Analytics.
+- **DATASUS – SIH/SUS**  
+  http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/qibr.def
+
+- **IBGE – Códigos dos Municípios**  
+  https://www.ibge.gov.br/explica/codigos-dos-municipios.php
+
+---
+
+## 👤 Autor
+
+**Waltuiro Antonio dos Santos Neto**  
+Analista de Dados | Ciência de Dados  
+
+Projeto desenvolvido para fins educacionais e demonstração de competências técnicas em **Data Analytics** e **Engenharia de Dados**.
 =======
 # analise-datasus-sql-python
 Projeto de ETL e análise de dados hospitalares do DATASUS (2019-2025) utilizando Python e SQLite
