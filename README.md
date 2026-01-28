@@ -77,6 +77,7 @@ erDiagram
         float media_permanencia
         int dias_permanencia
     }
+    
 ## 🔍 Principais Análises e Insights
 
 ### 📈 Evolução das Internações
