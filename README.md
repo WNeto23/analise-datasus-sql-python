@@ -71,13 +71,14 @@ erDiagram
         int cod_municipio_ibge FK
         int ano
         int mes
-        int internacoes
+        int internacoes-
         float valor_total
         float valor_medio_internacao
         float media_permanencia
         int dias_permanencia
     }
-    
+```
+
 ## 🔍 Principais Análises e Insights
 
 ### 📈 Evolução das Internações
