@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # 📊 Análise de Internações Hospitalares no Brasil (2019–2025)
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
@@ -82,19 +83,23 @@ erDiagram
 ## 🔍 Principais Análises e Insights
 
 ### 📈 Evolução das Internações
+
 - Queda significativa em **2020**, associada à pandemia e suspensão de procedimentos eletivos
 - Recuperação progressiva a partir de **2021**
 - **2024** apresenta o maior volume de internações da série histórica
 
 ### 💰 Concentração de Custos
+
 - Capitais e polos regionais concentram o maior custo total
 - Estados do **Sul e Sudeste** apresentam maior *ticket médio* por internação
 
 ### 📆 Sazonalidade
+
 - Menor volume de internações em **fevereiro** e **dezembro**
 - Estabilidade e leve alta no **segundo semestre**
 
 ### 🏥 Eficiência Hospitalar
+
 - Municípios com maior média de permanência tendem a apresentar
   maior custo médio por internação
 - Identificação de **outliers** com permanências extremamente elevadas
@@ -123,10 +128,10 @@ erDiagram
 ## 📚 Fontes de Dados Oficiais
 
 - **DATASUS – SIH/SUS**  
-  http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/qibr.def
+  <http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/qibr.def>
 
 - **IBGE – Códigos dos Municípios**  
-  https://www.ibge.gov.br/explica/codigos-dos-municipios.php
+  <https://www.ibge.gov.br/explica/codigos-dos-municipios.php>
 
 ---
 
@@ -135,8 +140,10 @@ erDiagram
 **Waltuiro Antonio dos Santos Neto**  
 Analista de Dados | Ciência de Dados  
 
-Projeto desenvolvido para fins educacionais e demonstração de competências técnicas em **Data Analytics** e **Engenharia de Dados**.
+Projeto desenvolvido para fins educacionais e demonstração de competências técnicas em **Data Analytics** e **Engenharia de Dados**
 =======
+
 # analise-datasus-sql-python
+
 Projeto de ETL e análise de dados hospitalares do DATASUS (2019-2025) utilizando Python e SQLite
 >>>>>>> 426a575308d0e8298f0bd05a9a454bea498d5943
